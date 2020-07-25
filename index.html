@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- defer を設定することで、htmlが全て読み込まれた後にjsが実行される。 -->
+  <!-- defer を設定しない場合は、bodyタグの末尾に置くことで同様に実行される。 -->
+  <script src="./test.js" defer></script>
+</head>
+<body>
+  <button id="btn">Click!</button>
+  <div id="msg">Waiting...</div>
+</body>
+</html>

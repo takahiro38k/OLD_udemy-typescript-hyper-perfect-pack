@@ -1,0 +1,149 @@
+// ❗️webpackとts-loaderの組み合わせでコンパイルする場合、
+// ❗️tsconfig.jsonの項目は、有効なものと無効なものがある。なので、webpack使用時も本fileは必要。
+// ❗️"target"などは有効。
+// ❗️"outDir"などは無効。
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig.json to read more about this file */
+
+    /* Basic Options */
+    // "incremental": true,                   /* Enable incremental compilation */
+    // ◆コンパイルするjsのバージョンを指定する。
+    "target": "ES2015",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015'('es6'), 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */
+    // ◆コンパイル時のmoduleの書き方を指定する。
+    // ◆フロント側はES2015(ES6)で問題ないが、Nodeは今もcommonjs(requireとかexportsとか)をよく使う。
+    // ◆❗️webpackは、ES2015(ES6)のimport, export構文を頼りに、
+    //    ツリーシェイキング(不要なコードのふるい落とし)を行う。
+    //    なのでwebpackではES2015の設定が必須。
+    "module": "ES2015",                     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */
+    // ◆メソッドなどを参照するためのライブラリを指定する。コメントアウトの場合は、"target"の対象に準ずる。
+    // ◆下記がデフォルトと同じ設定。
+    // "lib": [
+    //   "ES2015",
+    //   "DOM",
+    //   "DOM.Iterable",
+    //   "ScriptHost"
+    // ],                             /* Specify library files to be included in the compilation. */
+    // ◆jsファイルもコンパイルの対象とする。
+    // "allowJs": true,                       /* Allow javascript files to be compiled. */
+    // ◆"allowJs"と一緒に使う。jsファイルもtsファイルと同じようにエラーを表示する。
+    // "checkJs": true,                       /* Report errors in .js files. */
+    // ◆JSXのための設定。Reactを使う場合は'react'を設定する。
+    "jsx": "react",                     /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
+    // ◆コンパイル時に型定義ファイル('.d.ts')を作る。
+    // "declaration": true,                   /* Generates corresponding '.d.ts' file. */
+    // ◆型定義ファイル('.d.ts')のソースマップを作る。
+    // "declarationMap": true,                /* Generates a sourcemap for each corresponding '.d.ts' file. */
+    // ◆ブラウザでtsを見たい時に使う。
+    // ◆プラウザはtsを理解できないが、ソースマップを作ることで、jsからtsを作れるようになる。
+    // ◆結果、ブラウザの開発ツールの[Sources]でtsを見ることができる。デバッグもできる。
+    // "sourceMap": true,                     /* Generates corresponding '.map' file. */
+    // "outFile": "./",                       /* Concatenate and emit output to single file. */
+    // ◆jsファイルの出力先を指定する。tsファイルが複数階層にある場合、最適な階層構造にして出力してくれる。
+    "outDir": "./food-app/dist/",                        /* Redirect output structure to the directory. */
+    // ◆tsファイルのrootディレクトリを指定する。
+    // ◆コンパイル時、rootディレクトリを基準にして階層構造も出力される。
+    "rootDir": "./food-app/",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
+    // "composite": true,                     /* Enable project compilation */
+    // "tsBuildInfoFile": "./",               /* Specify file to store incremental compilation information */
+    // ◆コメントを削除
+    // "removeComments": true,                /* Do not emit comments to output. */
+    // ◆何も出力しない。エラーがないか型チェックのみ行う。
+    // "noEmit": true,                        /* Do not emit outputs. */
+    // "importHelpers": true,                 /* Import emit helpers from 'tslib'. */
+    // ◆targetがes3とes5の時のみ使用可能。es2015(es6)以降の構文でエラーが出力されるのを防ぐ。
+    // "downlevelIteration": true,            /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */
+    // "isolatedModules": true,               /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */
+    // ◆(手動で記載)エラーがあった場合、jsファイルを出力しない。
+    "noEmitOnError": true,
+
+    /* Strict Type-Checking Options */
+    // ◆この項目をtrueにすると、以下の7項目はすべてtrueあつかいとなる。
+    // ◆ただし、個別にfalseにすると、その項目はfalseあつかいとなる。
+    "strict": true,                           /* Enable all strict type-checking options. */
+    // ◆暗黙的なanyをエラーとする。ただし変数の場合は型が変更されるので対象外。また、明示anyはOK。
+    // "noImplicitAny": true,                 /* Raise error on expressions and declarations with an implied 'any' type. */
+    // ◆stringやnumberにnullやundefinedを代入できなくなる。代入を許可したい場合は、union型を使う。
+    // "strictNullChecks": true,              /* Enable strict null checks. */
+    // ◆classの継承時に起こり得るバグを防ぐ。
+    // "strictFunctionTypes": true,           /* Enable strict checking of function types. */
+    // ◆bind, call, applyは1st argがthisを示すため、2nd arg(以降)の型チェックができない。
+    // ◆この項目をtrueにすることで型チェックが可能になる。
+    // "strictBindCallApply": true,           /* Enable strict 'bind', 'call', and 'apply' methods on functions. */
+    // ◆classで使用。
+    // "strictPropertyInitialization": true,  /* Enable strict checking of property initialization in classes. */
+    // ◆thisが何を示すか明示していない時にエラーを出す。
+    // "noImplicitThis": true,                /* Raise error on 'this' expressions with an implied 'any' type. */
+    // ◆常にjsファイルに'use strict'を付与する。
+    // "alwaysStrict": true,                  /* Parse in strict mode and emit "use strict" for each source file. */
+
+    /* Additional Checks */
+    // ◆定義されたローカル変数(function内などの変数)が未使用の場合、エラーとする。
+    // "noUnusedLocals": true,                /* Report errors on unused locals. */
+    // ◆未使用の引数がある場合にエラーとする。
+    // "noUnusedParameters": true,            /* Report errors on unused parameters. */
+    // ◆暗黙的なreturnはエラーとする。
+    // "noImplicitReturns": true,             /* Report error when not all code paths in function return a value. */
+    // ◆switch文で使用。
+    // "noFallthroughCasesInSwitch": true,    /* Report errors for fallthrough cases in switch statement. */
+
+    /* Module Resolution Options */
+    // ◆"node"を設定すると、階層表示のないimportはnode_modulesを見に行くようになる。
+    "moduleResolution": "node",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
+    // "baseUrl": "./",                       /* Base directory to resolve non-absolute module names. */
+    // "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+    // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
+    // "typeRoots": [],                       /* List of folders to include type definitions from. */
+    // "types": [],                           /* Type declaration files to be included in compilation. */
+    // ◆型checkのみ、ES6のimport/export記法を可能とする。
+    // ◆実際のコンパイルは、babelやwebpackに任せる時に使う。
+    // "allowSyntheticDefaultImports": true,  /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
+    // ◆nodeでES6のimport/export記法を可能とする。
+    "esModuleInterop": true,                  /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
+    // "preserveSymlinks": true,              /* Do not resolve the real path of symlinks. */
+    // "allowUmdGlobalAccess": true,          /* Allow accessing UMD globals from modules. */
+
+    /* Source Map Options */
+    // "sourceRoot": "",                      /* Specify the location where debugger should locate TypeScript files instead of source locations. */
+    // "mapRoot": "",                         /* Specify the location where debugger should locate map files instead of generated locations. */
+    // "inlineSourceMap": true,               /* Emit a single file with source maps instead of having a separate file. */
+    // "inlineSources": true,                 /* Emit the source alongside the sourcemaps within a single file; requires '--inlineSourceMap' or '--sourceMap' to be set. */
+
+    /* Experimental Options */
+    "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
+    // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
+
+    /* Advanced Options */
+    "skipLibCheck": true,                     /* Skip type checking of declaration files. */
+    "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
+  },
+  // ◆コンパイルするファイルを設定  ※dif指定もOK
+  // !!!!! WARNING !!!!!
+  // excludeも同時に設定した場合、includeの対象からexcludeの対象を除外する。
+  // よって、両方に書かれたファイルはコンパイルされない。
+  "include": [
+    "./food-app/"
+  ],
+  // ◆コンパイルの除外ファイルを設定  ※dif指定もOK
+  "exclude": [
+    "./docs.ts",
+    "./compiler.ts",
+    // ワイルドカードも使用可能
+    "*.spec.ts",
+    // あらゆる階層のcompiler.tsを除外
+    "**/compiler.ts",
+    // node_modulesは、excludeを設定しなければデフォルトで除外されるが、
+    // 設定したら明示する必要がある。
+    "node_modules",
+  ],
+  // ◆コンパイルの対象ファイルを指定  ※dir指定不可。
+  // includeとの違い、excludeの対象でもコンパイル対象にすることができる。
+  // ただし、ワイルドコードは使えないので、相対パスか絶対パスで指定すること。
+  // !!!!! WARNING !!!!!
+  // このプロパティを設定する場合、書かれていないファイルはコンパイルされなくなる。
+  // "files": [
+    // "./tmp/tmp.ts",
+    // "./docs.ts",
+    // "./test.ts"
+  // ]
+}

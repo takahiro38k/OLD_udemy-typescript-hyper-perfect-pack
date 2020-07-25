@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "axios": "^0.19.2",
+    "serve": "^11.3.2"
+  }
+}

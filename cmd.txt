@@ -1,0 +1,54 @@
+########コンパイラ/tsc
+
+参照
+https://www.typescriptlang.org/docs/handbook/compiler-options.html
+
+####basic
+
+// 下記コマンドでtsファイルをjsファイルにコンパイルできる。
+// default => ES3, 同階層に同file名(.js)で出力。
+tsc <file.ts>
+tsc <file.ts> --target es2015  // version指定
+tsc <file.ts> --target es6     // version指定
+tsc <file.ts> --outFile 相対パス/<file.js> // 出力先指定　※file名まで指定すること。
+tsc <file.ts> -w --target es2015 --outFile 相対パス/<file.js> // watchモード併用
+
+// 補足
+// console.log などの結果を iTerm2 で表示したい場合は下記コマンドで実行可能。
+node <file.js>
+
+// !!!!! WARNING !!!!!
+// tsファイルはjsファイルにコンパイルしてから実行すること。
+❌ node <file.ts>
+
+==============================
+####watchモード
+
+// 保存時に自動的にコンパイルされる。
+// !!!!! WARNING !!!!!
+// エラーがあってもコンパイルされるので注意。
+tsc <file.ts> -w
+tsc <file.ts> --watch
+
+// targetの指定も可能
+tsc <file.ts> -w --target es2015
+
+// 終了
+⌃ + C
+
+==============================
+####すべてのtsファイルをコンパイル/tsc --init => tsc
+
+// tsconfig.jsonの作成
+tsc --init
+
+// tsconfig.json作成後は、tscコマンドがtsconfig.jsonを参照するようになり、
+// 下記コマンドですべてのtsファイルをコンパイルできる。
+// !!!!! WARNING !!!!!
+// ❗️ファイルを指定するとtsconfig.jsonは無視されるので注意。
+tsc
+
+// watchモードもまとめて反映できる。
+tsc - w
+
+************************************************************
