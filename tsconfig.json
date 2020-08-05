@@ -40,10 +40,10 @@
     // "sourceMap": true,                     /* Generates corresponding '.map' file. */
     // "outFile": "./",                       /* Concatenate and emit output to single file. */
     // ◆jsファイルの出力先を指定する。tsファイルが複数階層にある場合、最適な階層構造にして出力してくれる。
-    "outDir": "./food-app/dist/",                        /* Redirect output structure to the directory. */
+    "outDir": "app-food/dist",                        /* Redirect output structure to the directory. */
     // ◆tsファイルのrootディレクトリを指定する。
     // ◆コンパイル時、rootディレクトリを基準にして階層構造も出力される。
-    "rootDir": "./food-app/",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
+    "rootDir": "app-food",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
     // "composite": true,                     /* Enable project compilation */
     // "tsBuildInfoFile": "./",               /* Specify file to store incremental compilation information */
     // ◆コメントを削除
@@ -122,7 +122,7 @@
   // excludeも同時に設定した場合、includeの対象からexcludeの対象を除外する。
   // よって、両方に書かれたファイルはコンパイルされない。
   "include": [
-    "./food-app/"
+    "app-food"
   ],
   // ◆コンパイルの除外ファイルを設定  ※dif指定もOK
   "exclude": [

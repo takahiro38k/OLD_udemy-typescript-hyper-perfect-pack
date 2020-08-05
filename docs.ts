@@ -1889,10 +1889,10 @@ class User8 {
 // ########import/export
 
 // ◆import 4種
-import { Foods } from './food-app/foods.js' // ノーマル
-import { Foods as FoodsList } from './food-app/foods.js' // 名前指定
-import * as All from './food-app/foods.js' // All　※使う側: All.Foods のように書く。
-import DefItem from './food-app/foods.js' // from export default　※名前自由
+import { Foods } from './app-food/foods.js' // ノーマル
+import { Foods as FoodsList } from './app-food/foods.js' // 名前指定
+import * as All from './app-food/foods.js' // All　※使う側: All.Foods のように書く。
+import DefItem from './app-food/foods.js' // from export default　※名前自由
 
 // ◆export 2種
 export interface Scoreable { } // ノーマル
