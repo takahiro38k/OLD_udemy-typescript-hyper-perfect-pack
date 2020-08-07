@@ -61,6 +61,18 @@ npx create-react-app <dir-name> --template typescript
 ==============================
 ####React × Typescript × ESLint × Prettier × VSCode Setup
 
+❗️❗️vscodeに下記の拡張機能をinstall済みで、
+"editor.formatOnSave": true が設定されていれば、以降の設定なしでもおおむねこと足りる。
+・ESLint
+・Prettier - Code formatter
+⌘ + SによってPrettierのformatが反映されるし、tsとeslintの最低限のcheckは行われる。
+どうしてもより細かく設定したい場合のみ、以降の設定を行うこと。
+
+参照
+https://ginpen.com/2019/08/06/eslint-for-react-in-typescript/
+https://qiita.com/sho-t/items/c9fe6d382636bd3402f8
+
+++++----------------
 // globalにESLintがinstall済みであることを確認
 npm list -g --depth=0
 
@@ -70,7 +82,7 @@ npm i -g eslint
 // ❗️❗️プロジェクトのtop階層で実行
 // eslint初期化
 yarn run eslint --init
-++++----------------
+*====
 // 質問と回答例
 ? How would you like to use ESLint?
   To check syntax, find problems, and enforce code style
@@ -88,7 +100,8 @@ yarn run eslint --init
   Airbnb: https://github.com/airbnb/javascript
 ? What format do you want your config file to be in?
   JSON
---------++++--------
+====*
+
 // npmですぺてinstallしますか、と訊かれるが、yarnを使う場合はNoとする。
 // その場合、手動で下記のようにinstallする。
 // !!! WARNING !!!
@@ -98,15 +111,48 @@ yarn add -D eslint-config-airbnb@18.2.0
 yarn add -D eslint-plugin-import@2.22.0
 yarn add -D eslint-plugin-react-hooks@4.0.8
 yarn add -D eslint-plugin-react@7.20.5
-yarn add -D eslint@7.6.0
 yarn add -D @typescript-eslint/parser@3.8.0
 yarn add -D @typescript-eslint/eslint-plugin@3.8.0
 
-// prettierも必須
+// prettierも連携させる場合はinstall
 yarn add -D prettier eslint-config-prettier eslint-plugin-prettier
---------++++--------
+
+// ❗️❗️eslintは、defaultでcreate-react-appに含まれているので、installしない。
+// installしてしまうと、versionの差異によりyarn startした時にエラーとなる。
+❌ yarn add -D eslint@7.6.0
 
 --------++++--------
+package.jsonにESLintようのコマンドを追加。
 
+*** package.json ***
+  "scripts": {
+    "lint": "eslint --ext .ts,.tsx ./src"
+  },
+
+--------++++--------
+上記コマンドや、vscodeの波線でエラーを確認し、
+不要なエラー表示がでないよう.eslintrc.jsonを編集。
+
+参照
+/Documents/git/template/template-react-ts/.eslintrc.json
+
+💡💡既存の serviceWorker.ts などのエラーは無視してOK。
+対象fileの先頭に下記コメントを追記すると、eslintのcheck対象外とすることができる。
+
+/* eslint-disable */
+
+--------++++--------
+eslintのcheckがvscodeに反映されない場合、
+vscodeのsetting.jsonにpathを明記すると解消する場合がある。
+また、⌘ + S 時のESLintオートフォーマット機能を有効にするには、source.fixAllを有効にする。
+vscode自身のオートフォーマット(editor.formatOnSave)も同時に有効にできるが、
+コンフリクトはeditor.formatOnSaveが優先される模様。
+
+*** setting.json ***
+    "eslint.nodePath": "/usr/local/lib/node_modules",
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "editor.formatOnSave": true,
 
 ----------------++++
