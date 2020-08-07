@@ -43,7 +43,7 @@
     "outDir": "app-food/dist",                        /* Redirect output structure to the directory. */
     // ◆tsファイルのrootディレクトリを指定する。
     // ◆コンパイル時、rootディレクトリを基準にして階層構造も出力される。
-    "rootDir": "app-food",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
+    "rootDir": "./",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
     // "composite": true,                     /* Enable project compilation */
     // "tsBuildInfoFile": "./",               /* Specify file to store incremental compilation information */
     // ◆コメントを削除
@@ -102,6 +102,9 @@
     "esModuleInterop": true,                  /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
     // "preserveSymlinks": true,              /* Do not resolve the real path of symlinks. */
     // "allowUmdGlobalAccess": true,          /* Allow accessing UMD globals from modules. */
+    // ◆💡💡手動追加
+    // ◆JSONファイルのimportを可能とする。
+    "resolveJsonModule": true,
 
     /* Source Map Options */
     // "sourceRoot": "",                      /* Specify the location where debugger should locate TypeScript files instead of source locations. */

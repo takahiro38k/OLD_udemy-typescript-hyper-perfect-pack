@@ -52,3 +52,61 @@ tsc
 tsc - w
 
 ************************************************************
+########React
+
+==============================
+####プロジェクトの作成
+npx create-react-app <dir-name> --template typescript
+
+==============================
+####React × Typescript × ESLint × Prettier × VSCode Setup
+
+// globalにESLintがinstall済みであることを確認
+npm list -g --depth=0
+
+// ない場合はinstall
+npm i -g eslint
+
+// ❗️❗️プロジェクトのtop階層で実行
+// eslint初期化
+yarn run eslint --init
+++++----------------
+// 質問と回答例
+? How would you like to use ESLint?
+  To check syntax, find problems, and enforce code style
+? What type of modules does your project use?
+  JavaScript modules (import/export)
+? Which framework does your project use?
+  React
+? Does your project use TypeScript?
+  Yes
+? Where does your code run?
+  Browser
+? How would you like to define a style for your project?
+  Use a popular style guide
+? Which style guide do you want to follow?
+  Airbnb: https://github.com/airbnb/javascript
+? What format do you want your config file to be in?
+  JSON
+--------++++--------
+// npmですぺてinstallしますか、と訊かれるが、yarnを使う場合はNoとする。
+// その場合、手動で下記のようにinstallする。
+// !!! WARNING !!!
+// 随時versionが更新されるので、表示メッセージを確認して対応すること。
+yarn add -D eslint-plugin-jsx-a11y@6.3.1
+yarn add -D eslint-config-airbnb@18.2.0
+yarn add -D eslint-plugin-import@2.22.0
+yarn add -D eslint-plugin-react-hooks@4.0.8
+yarn add -D eslint-plugin-react@7.20.5
+yarn add -D eslint@7.6.0
+yarn add -D @typescript-eslint/parser@3.8.0
+yarn add -D @typescript-eslint/eslint-plugin@3.8.0
+
+// prettierも必須
+yarn add -D prettier eslint-config-prettier eslint-plugin-prettier
+--------++++--------
+
+--------++++--------
+
+
+----------------++++

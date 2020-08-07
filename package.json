@@ -2,5 +2,11 @@
   "dependencies": {
     "axios": "^0.19.2",
     "serve": "^11.3.2"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.44",
+    "@types/react-dom": "^16.9.8",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }
