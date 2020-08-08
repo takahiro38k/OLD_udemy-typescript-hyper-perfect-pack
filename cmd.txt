@@ -56,7 +56,11 @@ tsc - w
 
 ==============================
 ####プロジェクトの作成
+
 npx create-react-app <dir-name> --template typescript
+
+// redux version
+npx create-react-app <dir-name> --template redux-typescript
 
 ==============================
 ####React × Typescript × ESLint × Prettier × VSCode Setup
